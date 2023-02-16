@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from  '@angular/common/http'
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
+
 
 
 import { MaterialModule } from './material/material.module';
@@ -18,23 +18,26 @@ import { AccountService } from './account/service/account.service';
 import { DepositService } from './deposit/service/deposit.service';
 import { TransferService } from './transfer/service/transfer.service';
 import { CustomerService } from './customer/service/customer.service';
-import { MyNavComponent } from './my-nav/my-nav.component';
+import { MyNavComponent } from './shared/my-nav/my-nav.component';
 
 
-import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { MyTableComponent } from './my-table/my-table.component';
 
 import { HelpComponent } from './help/help.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginModule } from './login/login-module.module';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { SharedModule } from './shared/shared.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MyNavComponent,
-    DashboardComponent,
     MyTableComponent,
     HelpComponent,
   ],
@@ -52,6 +55,8 @@ import { LoginModule } from './login/login-module.module';
     CustomerModule,
     DepositModule,
     TransferModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
   ],
   providers: [AuthService,AccountService,DepositService,TransferService,CustomerService],
   bootstrap: [AppComponent]

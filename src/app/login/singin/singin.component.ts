@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { AuthService } from '../services/auth.service';
+import { UserCredential } from 'firebase/auth';
 
 
 @Component({
@@ -14,63 +15,54 @@ export class SinginComponent {
 
   myForm!: FormGroup;
 
-constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {}
 
-  this.myForm = this.formBuilder.group({
-    name: '',
-    email: '',
-  });
-}
-
-
-public email:string = "";
-public password:string = "";
-
-
-ngOnInit() {
-  this.myForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
-  });
-}
-
-login(email: string, password: string) {
-  this.doLogin(email, password);
-}
-
-doLogin(email: string, password: string) {
-  this.authService.post('http://localhost:3000/security/singin', {
-    email: email,
-    password: password
-  }).subscribe(res => {
-    const token = res.token;
-    this.saveToken(token);
-  }, error => {
-    console.error('Incorrecto');
-  });
-}
-
-saveToken(token: string) {
-  const decoded: {} = jwtDecode(token);
-  console.log(decoded);
-  if (token && typeof token === 'string') {
-    localStorage.setItem('token', token);
-    localStorage.setItem('customer', JSON.stringify(decoded));
-  } else {
-    console.error('Token inválido');
+  ngOnInit() {
+    this.myForm = this.formBuilder.group({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required)
+    });
   }
+
+
+  login() {
+    const email = this.myForm.value.email;
+    const password = this.myForm.value.password;
+    this.doLogin(email, password);
+  }
+
+  doLogin(email: string, password: string) {
+    this.authService.post('http://localhost:3000/security/singin', {
+      email: email,
+      password: password
+    }).subscribe(res => {
+      const token = res.token;
+      this.saveToken(token);
+    }, error => {
+      console.error('Incorrecto');
+    });
+  }
+
+  saveToken(token: string) {
+    const decoded: {} = jwtDecode(token);
+    console.log(decoded);
+    if (token && typeof token === 'string') {
+      localStorage.setItem('token', token);
+      localStorage.setItem('customer', JSON.stringify(decoded));
+    } else {
+      console.error('Token inválido');
+    }
+  }
+
+
+  async onClick() {
+    const userCredential: UserCredential = await this.authService.loginWithGoogle();
+    const token: string = await userCredential.user?.getIdToken() ?? '';
+    this.saveToken(token);
+    console.log(token);
+    this.router.navigate(['customer']);
+  }
+
 }
 
-
-
-
-
-  formLogin = this.formBuilder.group({
-    username: [''],
-    password: [''],
-  });
-
-
-
-}
 

@@ -12,12 +12,11 @@ export class CustomerComponent implements OnInit {
   constructor(private http: HttpClient ){}
 
 
-  usuario! : AccountInterface 
-
+  usuario! : AccountInterface
 
 
   ngOnInit() {
-    console.log(this.usuario);
+    this.getDataAccount();
   }
 
   getDataAccount(){
