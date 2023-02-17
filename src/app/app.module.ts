@@ -20,7 +20,6 @@ import { DepositService } from './main/services/deposit-service/deposit.service'
 import { AuthService } from './main/services/login-service/auth.service';
 import { TransferService } from './main/services/transfer-service/transfer.service';
 
-
 //COMPONENTES
 import { AppComponent } from './app.component';
 import { MyNavComponent } from './shared/my-nav/my-nav.component';
@@ -45,15 +44,14 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
     MaterialModule,
     SharedModule,
     LoginModule,
     AccountModule,
     CustomerModule,
     DepositModule,
-
     TransferModule,
+
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   ],

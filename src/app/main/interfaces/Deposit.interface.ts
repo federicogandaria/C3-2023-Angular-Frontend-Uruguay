@@ -2,7 +2,7 @@ import { AccountInterface } from './Account.interface';
 
 export interface DepositInterface {
   id: string;
-  accountId : string;
+  dateTime : string;
   amount: number;
 
 }

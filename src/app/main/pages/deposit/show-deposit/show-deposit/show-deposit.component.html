@@ -1,10 +1,8 @@
-<form [formGroup]="depositForm" (submit)="showDeposit()">
-  <label for="accountId">Número de cuenta:</label>
-  <input type="text" id="accountId" formControlName="accountId">
-
-  <label for="amount">Monto:</label>
-  <input type="number" id="amount" formControlName="amount">
-
-  <button type="submit">Depósito</button>
-</form>
-
+<h1>Lista de Depósitos</h1>
+<ul>
+  <li *ngFor="let deposito of obtenerDeposit">
+    <p>Id: {{ deposito.id }}</p>
+    <p>fecha : {{ deposito.dateTime }}</p>
+    <p>cantidad: {{ deposito.amount }}</p>
+  </li>
+</ul>

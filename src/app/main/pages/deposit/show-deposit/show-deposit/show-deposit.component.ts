@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DepositService } from 'src/app/main/services/deposit-service/deposit.service';
-
+import { OnInit } from '@angular/core';
 import { DepositModule } from '../../deposit.module';
-
+import { DepositInterface} from'../../../../interfaces/Deposit.interface';
 
 
 
@@ -14,16 +14,17 @@ import { DepositModule } from '../../deposit.module';
   templateUrl: './show-deposit.component.html',
   styleUrls: ['./show-deposit.component.scss']
 })
-export class ShowDepositComponent {
+export class ShowDepositComponent implements OnInit {
   depositForm: FormGroup;
-  obtenerDeposito: DepositModule
+  obtenerDeposito!: DepositInterface[]
+  obtenerDeposit!: DepositInterface[]
 
 
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
     private depositService: DepositService,
-    private depositModule:DepositModule
+    private depositModule:DepositModule,
 
   ) {
     this.depositForm = this.formBuilder.group({
@@ -33,13 +34,18 @@ export class ShowDepositComponent {
   }
 
   ngOnInit() {
-    this.obtenerDeposito = this.depositService.getDataAccount();
+    this.depositService.getDataAccount();
+
+    const listaDEpositos = localStorage.getItem('lista')
+    this.obtenerDeposit = listaDEpositos?  JSON.parse(listaDEpositos) :
+    console.log(this.obtenerDeposit[0])
+    this.depositService.getTDeposit().subscribe((account) => {
+      this.obtenerDeposit = account;
+    })
+
   }
 
-    const deposit = {
-      accountId: this.depositForm.value.accountId,
-      amount: this.depositForm.value.amount
-    };
+
 
   //   this.depositService.createDeposit(deposit).subscribe({
   //     next: (data) => { console.log(data) },
@@ -47,4 +53,5 @@ export class ShowDepositComponent {
   //     complete: () => { console.info("completo") }
   //   });
   // }
-  }}
+  }
+

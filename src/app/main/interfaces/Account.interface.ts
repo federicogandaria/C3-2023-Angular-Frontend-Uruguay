@@ -10,6 +10,6 @@ export interface AccountInterface {
     state:boolean;
     deletedAt?: number | Date;
 
-  
-
 }
+
+

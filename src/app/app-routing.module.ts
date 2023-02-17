@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateAccountComponent } from './account/create-account-type/create-account.component';
-import { SinginComponent } from './login/singin/singin.component';
 
-import { CreateDepositComponent } from './deposit/create-deposit/create-deposit/create-deposit.component';
-import { HelpComponent } from './help/help.component';
-import { LoginGuard } from './login/guard.guard';
-import { SingOutComponent } from './login/sing-out/sing-out.component';
-import { singupComponent } from './login/singup/singup.component';
-import { CustomerComponent } from './customer/new-customer/new-customer/customer.component';
+import { CustomerComponent } from './main/pages/customer/new-customer/new-customer/customer.component';
+import { singupComponent } from './main/pages/login/singup/singup.component';
+import { SingOutComponent } from './main/pages/login/sing-out/sing-out.component';
+import { LoginGuard } from './main/guards/guard.guard';
+import { HelpComponent } from './main/pages/help/help.component';
+import { CreateDepositComponent } from './main/pages/deposit/create-deposit/create-deposit/create-deposit.component';
+import { SinginComponent } from './main/pages/login/singin/singin.component';
+import { CreateAccountComponent } from './main/pages/account/create-account-type/create-account.component';
 
 
 const routes: Routes = [

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword,signInWithPopup, GoogleAuthProvider} from '@angular/fire/auth';
-import { AccountInterface } from 'src/app/interfaces/Account.interface';
+import { AccountInterface } from '../../interfaces/Account.interface';
+
 
 
 import { CustomerInterface } from '../../interfaces/Customer.interface';

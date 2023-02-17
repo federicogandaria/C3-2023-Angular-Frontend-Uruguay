@@ -40,5 +40,9 @@ export class CreateDepositComponent {
       error: (err) => { console.error(err) },
       complete: () => { console.info("completo") }
     });
+
+    setTimeout(() => {
+      this.depositService.getDataAccount();
+    }, 1000);
   }
 }

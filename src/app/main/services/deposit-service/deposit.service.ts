@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { newDepositModel } from '../../models/new-deposit.model';
-import { AccountInterface } from 'src/app/interfaces/Account.interface';
+import {DepositInterface} from'../../interfaces/Deposit.interface';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+
+import { newDepositModel } from 'src/app/models/new-deposit.model';
+import { AccountInterface } from '../../../main/pages/account/interface/account.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +14,10 @@ export class DepositService {
   constructor(private readonly httpClient:HttpClient) { }
 
   usuario! : AccountInterface
-
+  datos!: DepositInterface[]
   createDeposit(deposit:newDepositModel){
-                      //POR MEDIO DE ESTE METODO HTTP    CONECTAR AQUI,   ENVIAR AQUI
+
+    //POR MEDIO DE ESTE METODO HTTP    CONECTAR AQUI,   ENVIAR AQUI
     return this.httpClient.post('http://localhost:3000/deposit/newDeposit', deposit.getData());
 
     //SI FUERA GET VA SIN FUNCION PORQUE SOLO VA A TRAER INFORMACION
@@ -34,22 +38,32 @@ showDeposit(deposit:newDepositModel){
 getDataAccount(){
 
 
-  const account = localStorage.getItem('customer');
-this.usuario = account ? JSON.parse(account) : null
+// Obtener la cuenta de usuario desde el almacenamiento local
+const account = localStorage.getItem('customer');
+this.usuario = account ? JSON.parse(account) : null;
+console.log(this.usuario);
 
-this.httpClient.get(`http://localhost:3000/deposit/${this.usuario?.customer.id}`).subscribe(
-  data => {
-    console.log(data)
-return data
+// Realizar una solicitud GET a la API con el ID de la cuenta de usuario
+this.httpClient.get(`http://localhost:3000/deposit/${this.usuario.accountUser.customer.id}`).subscribe(
+  (data: any) => {
+    console.log(data);
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
+    // Guardar los datos obtenidos en una variable
+    this.datos = data;
+    this.setDeposit(this.datos)
+
+    // Guardar los datos obtenidos en el almacenamiento local
+    localStorage.setItem('lista', JSON.stringify(this.datos));
   },
-  error => {
+  (error: any) => {
     console.error(error);
   }
 );
 
-localStorage.setItem('customer', JSON.stringify(this.usuario))
+// Devolver los datos obtenidos
+return this.datos;
 
-return this.usuario
 
 }
 
@@ -57,6 +71,14 @@ ngOnInit() {
   this.getDataAccount();
 }
 
+private Deposit: BehaviorSubject<DepositInterface[]> = new BehaviorSubject<DepositInterface[]>([]);
 
+setDeposit(Deposit: DepositInterface[]) {
+  this.Deposit.next(Deposit);
+}
+
+getTDeposit() {
+  return this.Deposit.asObservable();
+}
 
 }

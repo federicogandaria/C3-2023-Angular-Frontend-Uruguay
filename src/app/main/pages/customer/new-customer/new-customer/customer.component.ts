@@ -24,8 +24,7 @@ export class CustomerComponent implements OnInit {
 
     const account = localStorage.getItem('customer');
   this.usuario = account ? JSON.parse(account) : null
-
-  this.http.get(`http://localhost:3000/account/${this.usuario?.accountUser.customer.id}`).subscribe(
+  this.http.get(`http://localhost:3000/customer/customer/${this.usuario?.accountUser.customer.id}`).subscribe(
     data => {
       console.log(data)
       this.usuario = data as AccountInterface;
