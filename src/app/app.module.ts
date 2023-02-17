@@ -31,6 +31,9 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { SharedModule } from './shared/shared.module';
+import { MyFooterComponent } from './shared/my-footer/my-footer/my-footer.component';
+
+
 
 
 
@@ -40,6 +43,7 @@ import { SharedModule } from './shared/shared.module';
     MyNavComponent,
     MyTableComponent,
     HelpComponent,
+    MyFooterComponent
   ],
   imports: [
     BrowserModule,

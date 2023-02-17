@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AccountInterface } from '../../interface/account.interface';
+import { AccountInterface } from '../../../account/interface/account.interface';
 
 @Component({
   selector: 'app-new-customer',
