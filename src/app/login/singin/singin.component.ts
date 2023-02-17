@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/login-service/auth.service';
 import { UserCredential } from 'firebase/auth';
 
 

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { newDepositModel } from 'src/app/models/new-deposit.model';
-import { DepositService } from '../../../services2/deposit/deposit.service';
-import { DepositModule } from '../../deposit.module';
+import { DepositService } from '../../../services/deposit-service/deposit.service';
+
 
 @Component({
   selector: 'app-create-deposit',
@@ -15,7 +15,7 @@ export class CreateDepositComponent {
   constructor(
     private formBuilder: FormBuilder,
     private depositService: DepositService,
-  
+
 
   ) {
     this.depositForm = this.formBuilder.group({
