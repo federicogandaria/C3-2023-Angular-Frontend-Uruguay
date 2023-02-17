@@ -4,9 +4,10 @@ import { SinginComponent } from './singin/singin.component';
 
 
 import { SingOutComponent } from './sing-out/sing-out.component';
-import { MaterialModule } from '../material/material.module';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { singupComponent } from './singup/singup.component';
+import { MaterialModule } from 'src/app/tools/material/material.module';
 
 
 

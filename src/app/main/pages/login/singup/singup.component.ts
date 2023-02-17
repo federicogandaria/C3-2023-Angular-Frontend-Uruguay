@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 import { Router } from '@angular/router';
-import { newCustomerModel } from '../../models/new-customer.model';
-import { SingUpService } from './singup.service';
+import { newCustomerModel } from 'src/app/models/new-customer.model';
+
+import { SingUpService } from '../../../services/login-service/singup.service';
 
 @Component({
   selector: 'app-singup',

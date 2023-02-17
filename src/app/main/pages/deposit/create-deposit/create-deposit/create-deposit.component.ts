@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DepositService } from 'src/app/main/services/deposit-service/deposit.service';
 import { newDepositModel } from 'src/app/models/new-deposit.model';
-import { DepositService } from '../../../services/deposit-service/deposit.service';
+
 
 
 @Component({

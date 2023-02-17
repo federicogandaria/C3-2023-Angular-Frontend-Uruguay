@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DepositService } from 'src/app/services/deposit-service/deposit.service';
+import { DepositService } from 'src/app/main/services/deposit-service/deposit.service';
+
 import { DepositModule } from '../../deposit.module';
 
 

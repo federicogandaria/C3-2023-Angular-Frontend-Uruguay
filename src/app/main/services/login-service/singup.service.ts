@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { newCustomerModel } from 'src/app/models/new-customer.model';
-import { IUsers } from '../interface/customer.interface';
+import { IUsers } from '../../pages/login/interface/customer.interface';
 
 
 

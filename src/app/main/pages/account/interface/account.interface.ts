@@ -1,4 +1,5 @@
-import { CustomerInterface } from '../../interfaces/Customer.interface';
+import { CustomerInterface } from "src/app/main/interfaces/Customer.interface";
+
 export interface  AccountInterface
 {accountUser:
   {
