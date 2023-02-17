@@ -15,7 +15,7 @@ import { DepositModule } from './deposit/deposit.module';
 import { TransferModule } from './transfer/transfer.module';
 import { AuthService } from './login/services/auth.service';
 import { AccountService } from './account/service/account.service';
-import { DepositService } from './deposit/service/deposit.service';
+
 import { TransferService } from './transfer/service/transfer.service';
 import { CustomerService } from './customer/service/customer.service';
 import { MyNavComponent } from './shared/my-nav/my-nav.component';
@@ -32,6 +32,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { SharedModule } from './shared/shared.module';
 import { MyFooterComponent } from './shared/my-footer/my-footer/my-footer.component';
+import { DepositService } from './services2/deposit/deposit.service';
 
 
 

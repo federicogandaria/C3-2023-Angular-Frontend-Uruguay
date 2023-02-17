@@ -1,15 +1,10 @@
-<h3>Depositar proporcionando: </h3>
-<hr>
-<select name="select">
-  <option value="value1" selected> Elige una opcion </option>
-  <option value="value2">Cedula</option>
-  <option value="value3">Numero de cuenta</option>
-  <option value="value4">Telefono</option>
-</select>
-<input type="text">
-<br><br>
-<hr>
-<p>Monto: </p>
-<input type="number">
+<form [formGroup]="depositForm">
+  <label for="accountId">Número de cuenta:</label>
+  <input type="text" id="accountId" formControlName="accountId">
 
-<button type="submit">Enviar de una ñery, no pedimos verificacion</button>
+  <label for="amount">Monto:</label>
+  <input type="number" id="amount" formControlName="amount">
+
+  <button type="button" (click)="onSubmit()">Depósito</button>
+</form>
+
