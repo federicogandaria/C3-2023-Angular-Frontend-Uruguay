@@ -13,6 +13,10 @@ export class DepositService {
                       //POR MEDIO DE ESTE METODO HTTP    CONECTAR AQUI,   ENVIAR AQUI
     return this.httpClient.post('http://localhost:3000/deposit/create', deposit.getData());
 
+    //SI FUERA GET VA SIN FUNCION PORQUE SOLO VA A TRAER INFORMACION
+    //return this.httpClient.get('http://localhost:3000/deposit/);
+
+
   }
 
 
